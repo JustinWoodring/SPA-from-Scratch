@@ -1,0 +1,56 @@
+body{
+    font-family: sans-serif;
+    background-color: black;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes counterspin {
+    from {
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(-360deg);
+    }
+}
+
+
+body > #root::before{  
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top:0%;
+    left:0%;
+    z-index: -1;
+    background: url("banner.png") 0 0 repeat;
+    background-size: contain;
+    background-position: center;
+    animation: 60s spin infinite linear;
+    transform-origin: center;
+    background-repeat:no-repeat;
+}
+
+body > #root {
+    position: relative;
+    overflow: hidden;
+    min-height:100vh;
+    width: 100vw;
+}
+
+body > #root{
+    padding-top:10vh;
+    color:white;
+    text-align: center;
+}
+
+body #count {
+    font-size: 3em;
+}

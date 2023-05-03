@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css"/>
+        <title>Dinkomatic SPA App</title>
+    </head>
+    <body>
+        <div id="root">
+
+        </div>
+    </body>
+    <script>
+        document.addEventListener("DOMContentLoaded", ()=>{
+            var root = document.getElementById("root");
+            root.appendChild(
+                (() => {
+                    var button = document.createElement("button");
+                    button.id = "button";
+                    button.innerText="Click me for the current number of server accesses."
+
+                    button.addEventListener("click", () => {
+                        var req = new XMLHttpRequest();
+                        req.onload = (e) => {
+                            var count = JSON.parse(req.response).count;
+                            document.getElementById("count").innerText=count;
+                        }
+                        req.open("GET", "/api/counter", true);
+                        req.send();
+                    })
+
+                    return button
+                })()
+            );
+            root.appendChild(document.createElement("br"))
+            root.appendChild(
+                (() => {var span = document.createElement("span"); span.id="count"; return span})()
+            )
+        })
+    </script>
+</html>
